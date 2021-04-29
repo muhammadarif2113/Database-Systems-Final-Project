@@ -1,0 +1,55 @@
+body{
+    background: #ddd;
+}
+.slide-button {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 5%;
+    text-align: center;
+}
+.carousel-images{
+    width: 1000px;
+    height: 500px;
+}
+
+.slide-button img {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 35px;
+    font-weight: bold;
+    background: rgba(255,255,255,0.4);
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    color: white;
+}
+
+.button-prev {
+    left: 0;
+}
+
+.button-next {
+    right: 15px;
+}
+
+.slider ul {
+    list-style: none;
+    width: 500px;
+    position: relative;
+    left: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.slider ul li {
+    float: left;
+}
+
+.slider {
+    position: relative;
+    width: 1000px;
+    overflow: hidden;
+    margin: 0 auto;
+}
