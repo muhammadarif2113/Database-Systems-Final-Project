@@ -6,18 +6,27 @@ const path = require('path');
 const http = require('http');
 const fs = require('fs');
 const connect = require('connect'); 
+const dotenv = require('dotenv'); 
 const { response } = require('express');
 
-
+dotenv.config({path: './.env'}); 
 
 
 const db = mysql.createConnection({
-    host    : 'localhost', 
-    user    : 'moe', 
-    password: 'password',  
-    database: 'NBAStore'
+      host    : process.env.DATABASE_HOST, 
+      user    : process.env.DATABASE_USER, 
+      password: process.env.DATABASE_PASSWORD,   
+      database: process.env.DATABASE
     
-}); 
+});
+
+const app = express(); 
+
+const publicDirectory = path.join(__dirname, './public'); 
+app.use(express.static(publicDirectory)); 
+app.use(express.urlencoded({extended: false })); 
+app.use(express.json()); 
+app.set('view engine', 'hbs'); 
 
 db.connect((err) => {
     if(err){
@@ -26,58 +35,19 @@ db.connect((err) => {
     console.log('Mysql connected'); 
 });
 
+//define routes
+app.use('/', require('./routes/pages')); 
+app.use('/auth', require('./routes/auth'));
 
+/*app.get('/deleteusertable', (req, res) => {
+    let sql = "DROP TABLE User_Account";
+    db.query(sql, (err, result) => {
+      if (err) throw err;
+      console.log("Table deleted");
+      res.send('table deleted')
+    });
+  });*/
 
-const app = express(); 
-
-//login user and save to db 
-/*app.use(session({
-	secret: 'secret',
-	resave: true,
-	saveUninitialized: true
-}));
-app.use(bodyParser.urlencoded({extended : true}));
-app.use(bodyParser.json());
-*/
-//app.get('/', function(request, response) {
-//	response.sendFile(path.join(__dirname + '/HTML/index.html'));
-//    response.sendFile(path.join(__dirname, 'HTML', 'index.html'));
-
-//});
-//set home screen to index.html 
-app.use(express.static(path.join(__dirname, 'HTML'))); 
-
-
-
-/*app.post('/auth', function(request, response) {
-	var username = request.body.username;
-	var password = request.body.password;
-	if (username && password) {
-		connection.query('SELECT * FROM User_Account WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
-			if (results.length > 0) {
-				request.session.loggedin = true;
-				request.session.username = username;
-				response.redirect('/home');
-			} else {
-				response.send('Incorrect Username and/or Password!');
-			}			
-			response.end();
-		});
-	} else {
-		response.send('Please enter Username and Password!');
-		response.end();
-	}
-});
-
-app.get('/home', function(request, response) {
-	if (request.session.loggedin) {
-		response.send('Welcome back, ' + request.session.username + '!');
-	} else {
-		response.send('Please login to view this page!');
-	}
-	response.end();
-});
-*/
 //Create db 
 app.get('/createdbNBAStore', (req, res) => {
     let sql = 'CREATE DATABASE NBAStore'; 
@@ -113,14 +83,16 @@ app.get('/createorders', (req, res) => {
         res.send('Orders table created....'); 
     }); 
 }); 
+
 app.get('/createuseraccount', (req, res) => {
-    let sql = 'CREATE TABLE IF NOT EXISTS User_Account(account_id VARCHAR(30) CHARACTER SET utf8, username VARCHAR(30) CHARACTER SET utf8, password VARCHAR(30) CHARACTER SET utf8, phone_number VARCHAR(70) CHARACTER SET utf8)'; 
+    let sql = 'CREATE TABLE IF NOT EXISTS User_Account(username VARCHAR(80) CHARACTER SET utf8, password VARCHAR(80) CHARACTER SET utf8, phone_number VARCHAR(80) CHARACTER SET utf8)'; 
     db.query(sql, (err, result) => {
         if(err) throw err; 
         console.log(result); 
         res.send('User_Account table created....'); 
     }); 
-}); 
+});
+
 app.get('/createaddress', (req, res) => {
     let sql = 'CREATE TABLE IF NOT EXISTS Address(name VARCHAR(30) CHARACTER SET utf8, street_address VARCHAR(30) CHARACTER SET utf8, city VARCHAR(30) CHARACTER SET utf8, state VARCHAR(30) CHARACTER SET utf8, zip INT)'; 
     db.query(sql, (err, result) => {
@@ -209,20 +181,20 @@ app.get('/insertorders', (req, res) => {
 });    
 app.get('/insertuseraccount', (req, res) => { 
     let values = [
-        ['A001', 'oscarm', 'oscarp', '3474532464'], 
-        ['A006', 'tommike', 'tomp', '5342446543'], 
-        ['A003', 'jennifer22', 'jenniferp', '7453242341'], 
-        ['A005', 'herbert1', 'herbertp', '3246453423'], 
-        ['A004', 'jose90', 'josep', '3426432343']
+        ['oscarm', 'oscarp', '3474532464'], 
+        ['tommike', 'tomp', '5342446543'], 
+        ['jennifer22', 'jenniferp', '7453242341'], 
+        ['herbert1', 'herbertp', '3246453423'], 
+        ['jose90', 'josep', '3426432343']
 
     ];
-    let sql = 'INSERT INTO User_Account (account_id, username, password, phone_number) VALUES ?'; 
+    let sql = 'INSERT INTO User_Account (username, password, phone_number) VALUES ?'; 
     let query = db.query(sql, [values], (err, result) => {
         if(err) throw err; 
         console.log(result); 
         res.send('inserted...'); 
     });
-});  
+}); 
 app.get('/insertaddress', (req, res) => { 
     let values = [
         ['Oscar Morales', '3451 Ave U', 'Brooklyn', 'New York', 11233], 

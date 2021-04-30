@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .column {
+        float: left;
+        width: 33.33%;
+        padding: 5px;
+    }
+
+
+    .row::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+</style>
+
+
+
+    <head>
+        <meta charset="utf-8">
+        <title>Carousel</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="JS/carousel.js"></script>
+        <link rel="stylesheet" href="/carousel.css" />
+        <link href="/base.css" rel="stylesheet"  />
+        <link href="/layout4.css" rel="stylesheet"/>
+
+
+    </head>
+
+
+
+<body>
+<header>
+
+    <nav id="toptop">
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/carousel.html">Gallary</a></li>
+            <li><a href="/cart.html">Online Store</a></li>
+            <li><a href="/events.html">Events</a></li>
+        </ul>
+    </nav>
+</header>
+
+
+<div class="slider">
+    <ul>
+        <li><img class="carousel-images"src="/Images/boxing1.jpeg" alt="" width="1000" height="500" /></li>
+        <li><img class="carousel-images"src="/Images/boxing2.jpeg" alt="" width="1000" height="500"></li>
+        <li><img class="carousel-images"src="/Images/boxing3.jpg" alt="" width="1000" height="500" /></li>
+        <li><img class="carousel-images"src="/Images/boxing5.jpg" alt="" width="1000" height="500"/></li>
+        <li><img class="carousel-images"src="/Images/boxing6.jpg" alt="" width="1000" height="500" /></li>
+    </ul>
+
+    <a class="slide-button button-prev" data-nav="prev"><img src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-left-01-256.png"/> </a>
+    <a class="slide-button button-next" data-nav="next"><img src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-right-01-512.png"/></a>
+
+
+</div>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .column {
+        float: left;
+        width: 20%;
+        padding: 5px;
+    }
+
+
+    .row::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+</style>
+
+<div class="row">
+    <div class="column">
+        <img src="Images/boxing1.jpeg" alt="Snow" style="width:100%">
+    </div>
+    <div class="column">
+        <img src="Images/boxing2.jpeg" alt="Forest" style="width:100%">
+    </div>
+    <div class="column">
+        <img src="Images/boxing3.jpg" alt="Mountains" style="width:100%">
+    </div>
+    <div class="column">
+        <img src="Images/boxing5.jpg" alt="Mountains" style="width:100%">
+    </div>
+    <div class="column">
+        <img src="/Images/boxing6.jpg" alt="Mountains" style="width:100%">
+    </div>
+</div>
+
+<footer>
+    <nav id="bottom">
+        <ul>
+            <li><a href="/index.html">help &amp; info</a></li>
+        </ul>
+        <ul>
+            <li><a href="/carousel.html">Check our Gallary</a></li>
+
+        </ul>
+        <ul>
+            <li><a href="/events.html">Find an event</a></li>
+        </ul>
+    </nav>
+    <p>MoMoes Copy Right &copy; 2020 All Rights Reserved</p>
+</footer>
+
+
+
+</body>
+</html>
