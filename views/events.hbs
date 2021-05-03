@@ -9,8 +9,8 @@
    <link href="/layout4.css" rel="stylesheet"/>
    <link href="/lht_layout.css" rel="stylesheet" />
    <link href="/lht_calendar.css" rel="stylesheet" />
-   <script src="/lht_events.js" defer></script>
-   <script src="/lht_calendar.js" defer></script>
+  <!-- <script src="/lht_events.js"defer></script>
+   <script src="/lht_calendar.js" defer></script> -->
 
 </head>
 
@@ -20,10 +20,12 @@
 
    <nav id="toptop">
       <ul>
-         <li><a href="/">Home</a></li>
-         <li><a href="/carousel">Gallary</a></li>
-         <li><a href="/cart">Online Store</a></li>
-         <li><a href="/events">Events</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/carousel">Gallary</a></li>
+            <li><a href="/cart">Online Store</a></li>
+            <li><a href="/login">Sign In</a></li>
+            <li><a href="/register">Register</a></li>
+            <li><a href="/events">Events</a></li>
       </ul>
    </nav>
 </header>
@@ -46,8 +48,149 @@
    </nav>
    <p>MoMoes Copy Right &copy; 2020 All Rights Reserved</p>
 </footer>
+<script>
+//lht events.js
+"use strict";
 
 
+var dayEvent = new Array();
+
+dayEvent[1] = "<br /><a href='#'>Learn how to dodge punches</a><br />7 pm <br />$0";
+dayEvent[2] = "<br /><a href='#'>Free boxing 101</a><br />7 pm <br />$0";
+dayEvent[3] = "<br /><a href='#'>grabbling 101</a><br />8 pm<br />$18/$24/$36";
+dayEvent[4] = "<br /><a href='#'>Free form Boxing</a><br />7:30 pm<br />$24/$36/$48";
+dayEvent[5] = "<br /><a href='#'>MMA free lesson</a><br />11 am<br />$12";
+dayEvent[6] = "<br /><a href='#'>Cage match 101</a><br />7 pm<br />$24";
+dayEvent[7] = "";
+
+
+dayEvent[8] =  "";
+dayEvent[9] = "";
+dayEvent[10] = "";
+dayEvent[11] = "";
+dayEvent[12] = "";
+dayEvent[13] = "";
+dayEvent[14] = "";
+dayEvent[15] = "";
+dayEvent[16] = "";
+dayEvent[17] = "";
+dayEvent[18] = "";
+dayEvent[19] = "";
+dayEvent[20] = "";
+dayEvent[21] = "";
+dayEvent[22] = "";
+dayEvent[23] = "";
+dayEvent[24] = "";
+dayEvent[25] = "";
+dayEvent[26] = "";
+dayEvent[27] = "";
+dayEvent[28] = "";
+dayEvent[29] = "";
+dayEvent[30] = "";
+dayEvent[31] = "";
+
+//lht_events.js
+
+"use strict";
+
+var thisDay = new Date();
+
+
+document.getElementById("calendar").innerHTML = createCalendar(thisDay);
+
+
+function createCalendar(calDate) {
+    var calendarHTML = "<table id='calendar_table'>";
+    calendarHTML += calCaption(calDate);
+    calendarHTML += calWeekdayRow();
+    calendarHTML += calDays(calDate);
+    calendarHTML += "</table>";
+    return calendarHTML;
+}
+
+function calCaption(calDate) {
+    // monthName arry contains the list of month names 
+    var monthName = ["January", "February", "March", "April", "May", "June" , "July", "August", "September", "October", "November", "December"];
+
+    //Determine the current month
+    var thisMonth = calDate.getMonth();
+
+    //Determine the current year
+    var thisYear = calDate.getFullYear();
+
+    //Write the caption 
+    return "<caption>" + monthName[thisMonth] + " " + thisYear + "</caption>";
+}
+
+// Function to wirte a table row if weekday abbreviations
+function calWeekdayRow() {
+    //Array of weekday abbreviations
+    var dayName = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    var rowHTML = "<tr>";
+    
+    //Loop Through the dayName array
+    for (var i = 0; i < dayName.length; i++) {
+        rowHTML += "<th class='calender_weekdays'>" + dayName[i] +"</th>";
+    }//for loop close
+
+    //Closing Table Row tag
+    rowHTML += "</tr>";
+    return rowHTML;
+}//function close
+
+//Function to calculate the number of days in the month
+function daysInMonth(calDate) {
+    //Array of days in each month
+    var dayCount = [31,28,31,30,31,30,31,31,30,31,30,31];
+
+    //Extract the four digit year and month value
+    var thisYear = calDate.getFullYear();
+    var thisMonth = calDate.getMonth();
+    
+    //Revise the day in February for leap years
+    if (thisYear % 4 === 0) {
+        dayCount[1] = 29;
+        if ((thisYear % 100 != 0) || (thisYear % 400 ===0)) {
+            dayCount[1] = 29;
+        }//Nested if
+    }//Main if
+
+    //Return the number of days for the  current month
+    return dayCount[thisMonth];
+}//end main function
+
+//Function to write table rows for each day of the month
+function calDays(calDate) {
+    //Determine the staring day of the month
+    var day = new Date(calDate.getFullYear(), calDate.getMonth(), 1);
+    var weekDay = day.getDay(); 
+    //Write blank cells preceding the staring day
+    var htmlCode = "<tr>";
+    for (var i = 0; i < weekDay; i++) {
+        htmlCode += "<td></td>"
+    }
+    //Write cells for each day of the month
+    var totalDays = daysInMonth(calDate);
+    var highlighDay = calDate.getDate();
+    for (var i = 1; i <= totalDays; i++) {
+        day.setDate(i);
+        weekDay = day.getDay();
+
+        if (weekDay === 0) htmlCode += "<tr>";
+        if (i === highlighDay) {
+            htmlCode += "<td class='calendar_dates' id='calendar_today'>" + i + dayEvent[i] +  "</td>";
+        } else {
+            htmlCode += "<td class='calendar_dates'>" + i + dayEvent[i] + "</td>";
+        }
+        if (weekDay === 6) htmlCode += "</tr>";
+    }
+    //Return table rows and table data to make a calendar
+    return htmlCode;
+}
+
+
+
+</script>
 </body>
 
 </html>
