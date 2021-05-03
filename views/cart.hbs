@@ -1,127 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 
    <title>Coctura Shopping Chart</title>
    <meta charset="utf-8" />
-   <link href="/base.css" rel="stylesheet"  />
-   <link href="/cart.css" rel="stylesheet"  />
-   <link href="/layout4.css" rel="stylesheet"  />
-   <script src="JS/cart.js"></script>
-   <script src="JS/loginform.js"></script>
+   <link href="/base.css" rel="stylesheet" />
+   <link href="/cart.css" rel="stylesheet" />
+   <link href="/layout4.css" rel="stylesheet" />
+   <script src="/cart.js"></script>
+   <script src="/loginform.js"></script>
 
 </head>
 
 <body>
-<header>
+   <header>
+
+      <nav id="toptop">
+
+         <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/carousel">Gallary</a></li>
+            <li><a href="/cart">Online Store</a></li>
+            <li><a href="/login">Sign In</a></li>
+            <li><a href="/events">Events</a></li>
+         </ul>
+      </nav>
+
+   </header>
+   <section id="summary">
+      <h1>NBA Jersey</h1>
+      <img src="Images/Jersey1.jpeg" alt="" style="width:300px;height:400px;">
+      <p>Unemployed Student NBA online Store: 10 Years Of High Quality NBA Equipment.
+         NBA official Basketball, Jersey, T-shirt, Backpack, & More. New NBA Gear In Stock- See Inventory.</p>
+   </section>
+
+   <section id="orderSection">
+      <form id="cart" name="cart" method="get" action="credit.html">
+         <table id="cartTable">
+            <caption>Shopping Cart</caption>
+            <tr>
+               <td>
+                  <label>NBA Jersey ($99.99)</label>
+                  <input type="hidden" name="modelCost" id="modelCost" value="99.99" />
+                  <input type="hidden" id="modelName" name="modelName" value=" ($99.99)" />
+               </td>
+               <td class="rightA">
+                  <label for="modelQty">Qty</label>
+                  <select name="modelQty" id="modelQty">
+                     <option value="1" selected>1</option>
+                     <option value="2">2</option>
+                     <option value="3">3</option>
+                     <option value="4">4</option>
+                     <option value="5">5</option>
+                     <option value="6">6</option>
+                     <option value="7">7</option>
+                     <option value="8">8</option>
+                     <option value="9">9</option>
+                     <option value="10">10</option>
+                  </select>
+               </td>
+               <td>
+                  <input type="text" name="orderCost" id="orderCost" size="10" readonly />
+               </td>
+            </tr>
 
 
-<!---   <form name="myForm" action="" onsubmit="return validateForm()" method="post">
-      UserName: <input type="text" name="username">
-      Password: <input type="text" name="password">
-      <input type="submit" value="Submit">
-   </form>
--->
-   <nav id="toptop">
-      <ul>
-         <li><a href="/index.html">Home</a></li>
-         <li><a href="/carousel.html">Gallary</a></li>
-         <li><a href="/cart.html">Online Store</a></li>
-         <li><a href="/login.html">Sign In</a></li>
-         <li><a href="/events.html">Events</a></li>
-      </ul>
-   </nav>
+            <tr>
+               <td colspan="2">
+                  <input type="hidden" id="shippingType" name="shippingType" />
+                  <fieldset>
+                     <legend>Shipping</legend>
+                     <label><input type="radio" id="overnight" name="shipping" value="28.50" checked /> Overnight
+                        Shipping ($28.50 per)</label>
+                     <label><input type="radio" id="day_2" name="shipping" value="19.95" /> 2-Day Shipping ($19.95
+                        per)</label>
+                     <label><input type="radio" id="ground" name="shipping" value="12.95" /> Ground Shipping ($12.95
+                        per)</label>
+                  </fieldset>
+               </td>
+               <td>
+                  <input type="text" name="shippingCost" id="shippingCost" size="10" readonly />
+               </td>
+            </tr>
+            <tr>
+               <td colspan="2" class="rightA">Subtotal</td>
+               <td class="outcell">
+                  <input type="text" name="subTotal" id="subTotal" size="10" readonly />
+               </td>
+            </tr>
 
-</header>
-<section id="summary">
-   <h1>Complete Boxing Gear</h1>
-   <img src="Images/boxingGear.jpeg" alt="" />
-   <p>MoMoes Boxing: 20 Years Of High Quality Boxing Equipment.
-      Boxing Gloves, Shoes, Equipment, Bags, & More. New Boxing Gear In Stock- See Inventory.</p>
-</section>
+            <tr>
+               <td colspan="2" class="rightA">Tax (8%)</td>
+               <td>
+                  <input type="text" name="salesTax" id="salesTax" size="10" readonly />
+               </td>
+            </tr>
 
-<section id="orderSection">
-   <form id="cart" name="cart" method="get" action="/credit.html">
-      <table id="cartTable">
-         <caption>Shopping Cart</caption>
-         <tr>
-            <td>
-               <label>Boxing Gear ($150.95)</label>
-               <input type="hidden" name="modelCost" id="modelCost" value="249.95" />
-               <input type="hidden" id="modelName" name="modelName" value=" ($249.95)" />
-            </td>
-            <td class="rightA">
-               <label for="modelQty">Qty</label>
-               <select name="modelQty" id="modelQty">
-                  <option value="1" selected>1</option>
-                  <option value="2">2</option><option value="3">3</option>
-                  <option value="4">4</option><option value="5">5</option><option value="6">6</option>
-                  <option value="7">7</option><option value="8">8</option><option value="9">9</option>
-                  <option value="10">10</option>
-               </select>
-            </td>
-            <td>
-               <input type="text" name="orderCost" id="orderCost" size="10" readonly />
-            </td>
-         </tr>
+            <tr>
+               <td colspan="2" class="rightA">TOTAL</td>
+               <td>
+                  <input type="text" name="cartTotal" id="cartTotal" size="10" readonly />
+               </td>
+            </tr>
+         </table>
+         <input type="submit" id="buttonAdd" value="Checkout" />
 
+      </form>
+   </section>
 
-         <tr>
-            <td colspan="2">
-               <input type="hidden" id="shippingType" name="shippingType" />
-               <fieldset>
-                  <legend>Shipping</legend>
-                  <label><input type="radio" id="overnight" name="shipping" value="28.50" checked /> Overnight Shipping ($28.50 per)</label>
-                  <label><input type="radio" id="day_2" name="shipping" value="19.95" /> 2-Day Shipping ($19.95 per)</label>
-                  <label><input type="radio" id="ground" name="shipping" value="12.95" /> Ground Shipping ($12.95 per)</label>
-               </fieldset>
-            </td>
-            <td>
-               <input type="text" name="shippingCost" id="shippingCost" size="10" readonly />
-            </td>
-         </tr>
-         <tr>
-            <td colspan="2" class="rightA">Subtotal</td>
-            <td class="outcell">
-               <input type="text" name="subTotal" id="subTotal" size="10" readonly />
-            </td>
-         </tr>
+   <footer>
+      <nav id="bottom">
+         <ul>
+            <li><a href="/index">help &amp; info</a></li>
+         </ul>
+         <ul>
+            <li><a href="/carousel">Check our Gallary</a></li>
 
-         <tr>
-            <td colspan="2" class="rightA">Tax (8%)</td>
-            <td>
-               <input type="text" name="salesTax" id="salesTax" size="10" readonly />
-            </td>
-         </tr>
-
-         <tr>
-            <td colspan="2" class="rightA">TOTAL</td>
-            <td>
-               <input type="text" name="cartTotal" id="cartTotal" size="10" readonly />
-            </td>
-         </tr>
-      </table>
-      <input type="submit" id="buttonAdd" value="Checkout" />
-
-   </form>
-</section>
-
-<footer>
-   <nav id="bottom">
-      <ul>
-         <li><a href="/index.html">help &amp; info</a></li>
-      </ul>
-      <ul>
-         <li><a href="/carousel.html">Check our Gallary</a></li>
-
-      </ul>
-      <ul>
-         <li><a href="/events.html">Find an event</a></li>
-      </ul>
-   </nav>
-   <p>MoMoes Copy Right &copy; 2020 All Rights Reserved</p>
-</footer>
+         </ul>
+         <ul>
+            <li><a href="/events">Find an event</a></li>
+         </ul>
+      </nav>
+      <p>MoMoes Copy Right &copy; 2020 All Rights Reserved</p>
+   </footer>
 
 </body>
+
 </html>
