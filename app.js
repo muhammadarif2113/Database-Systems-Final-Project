@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser');
 dotenv.config({path: './.env'}); 
 
 
+
 const db = mysql.createConnection({
       host    : process.env.DATABASE_HOST, 
       user    : process.env.DATABASE_USER, 
@@ -34,7 +35,6 @@ db.connect((err) => {
 //define routes
 app.use('/', require('./routes/pages')); 
 app.use('/auth', require('./routes/auth'));
-//app.use(express.static(__dirname + '/Images'))
 
 /*app.get('/deleteusertable', (req, res) => {
     let sql = "DROP TABLE User_Account";

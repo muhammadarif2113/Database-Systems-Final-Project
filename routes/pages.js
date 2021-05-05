@@ -25,4 +25,4 @@ router.get("/cart", (req, res) => {
     res.render("cart"); 
 });
 
-module.exports = router; 
+module.exports = router;

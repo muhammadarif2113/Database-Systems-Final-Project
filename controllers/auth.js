@@ -1,6 +1,9 @@
 const mysql = require("mysql"); 
 const jwt = require('jsonwebtoken'); 
 const bcrypt = require('bcryptjs'); 
+const express = require('express'); 
+const router = express.Router(); 
+
 const db = mysql.createConnection({
           host    : process.env.DATABASE_HOST, 
           user    : process.env.DATABASE_USER, 
@@ -8,15 +11,84 @@ const db = mysql.createConnection({
           database: process.env.DATABASE
 });
 //login credentials must match what is in User_Account table in database 
+/*const {
+    promisify
+} = require('util'); 
+
+const query = promisify(db.query.bind(db)); */
+
+/*router.post('/login', (req, res) => {
+    var username = req.body.username
+    var password = req.body.password
+
+    var grab_user = 'SELECT * FROM User_Account WHERE username = ?'
+    db.query(grab_user, username, (err, results) => {
+        if (err || results.length) {
+            res.send('user not found')
+        } else {
+            var user = result[0]
+            bcrypt.compare (password, user.password, (err, match) => {
+                if (err) {
+                    res.send("pass not match")
+                } else {
+                    res.send(user)
+                }
+            });
+        }
+    })
+})*/
+const {
+    promisify 
+} = require('util'); 
+
+const query = promisify(db.query.bind(db)); 
+
+exports.login = async (req, res) => {
+    try {
+        const { 
+            username, 
+            password 
+        } = req.body; 
+
+        const results = await query ('SELECT * FROM User_Account WHERE username = ?', [username]); 
+
+        console.log(results); 
+
+        if (!results || !(await bcrypt.compare(password, results[0].password))) {
+                res.status(401).render('login', {
+                    message: 'Credentials are incorrect'
+                });
+
+        } else {
+                const user = results[0].user; 
+                const token = jwt.sign({user: username }, process.env.JWT_SECRET, {
+                    expiresIn: process.env.JWT_EXPIRES_IN
+                }); 
+
+                console.log("the token is: " + token); 
+                const cookieOptions = {
+                    expires: new Date(
+                        Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
+                    ), 
+                    httpOnly: true
+                }
+                res.cookie('jwt', token, cookieOptions); 
+                res.status(200).redirect("/"); 
+            }
+    } catch (error) {
+        console.log(error);   
+    }
+} 
+
+
+
+
+ 
+    
+/*
 exports.login = async (req, res) => {
     try {
         const { username, password } = req.body; 
-
-       // if(!username || password ) {
-       //     return res.status(400).render('login', {
-       //         message: 'Please provide both'
-       //     })
-       // }
 
        db.query('SELECT * FROM User_Account WHERE username = ?', [username], async (error, results) => {
         console.log(results);     
@@ -45,7 +117,7 @@ exports.login = async (req, res) => {
     } catch (error) {
         console.log(error);   
     }
-}
+} */
 
 
 //add credentials to database when user registers 
