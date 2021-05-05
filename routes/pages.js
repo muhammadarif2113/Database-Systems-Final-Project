@@ -24,5 +24,10 @@ router.get("/events", (req, res) => {
 router.get("/cart", (req, res) => {
     res.render("cart"); 
 });
-
+router.get("/store", (req, res) => {
+    res.render("store"); 
+});
+router.get("/storeCart", (req, res) => {
+    res.render("storeCart"); 
+});
 module.exports = router;
