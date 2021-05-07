@@ -8,14 +8,14 @@ html {
 }
 
 body {
- /*  display: -webkit-flex;
-   display: flex; 
+   display: -webkit-flex;
+   display: flex;
    -webkit-flex-flow: row wrap;
    flex-flow: row wrap;  
    -webkit-align-items: flex-start;
-   align-items: flex-start; */
+   align-items: flex-start; 
    max-width: 1020px;
-   min-width: 1012px; 
+   min-width: 420px; 
    margin: 0px auto; 
    background: white;
    box-shadow: rgb(51, 51, 51) 10px 10px 25px,  rgb(51, 51, 51) -10px 10px 25px;

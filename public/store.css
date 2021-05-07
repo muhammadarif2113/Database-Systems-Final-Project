@@ -1,4 +1,5 @@
-.container {
+.container,
+.products-container {
     display: flex; 
     justify-content: center; 
     flex-wrap: wrap; 
@@ -16,7 +17,7 @@
 .add-cart{
     position: absolute; 
     width: 100%; 
-    background-color: rgb(202, 152, 152);
+    background-color: rgb(214, 109, 109);
     transition: all 0.3s ease-in-out; 
     opacity: 0; 
     cursor: pointer; 
@@ -32,3 +33,98 @@
     padding: 10px; 
     text-decoration: none;
 } 
+
+.cart ion-icon{
+    vertical-align: bottom;
+    font-size: 20px;
+    padding-right: 5px;
+}
+
+.cart a {
+    background-color: rgb(214, 109, 109);
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+
+}
+
+/* -----------------------------------CART-------------------------------------------*/
+.container{
+    max-width: 1000px;
+    justify-content: space-around;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.products-container{
+    max-width: 650px; 
+    justify-content: space-around;
+    margin: 0 auto;
+    margin-top: 50px; 
+}
+.products-container ion-icon {
+    font-size: 25px; 
+    color: blue; 
+    margin-left: 10px; 
+    margin-right: 10px; 
+    cursor: pointer; 
+}
+.products{
+    width: 100%;
+    display: flex;
+    flex-wrap:wrap;
+}
+.products img{
+    width: 150px; 
+}
+.basketTotalContainer{
+    display: flex; 
+    justify-content: flex-end; 
+    width: 100%; 
+    padding: 10px 0;
+}
+.basketTotalTitle{
+    width: 30%; 
+}
+.basketTotal{
+    width: 10%; 
+}
+.product-header {
+    width: 100%; 
+    max-width: 650px;
+    display: flex;
+    justify-content: flex-start;
+    border-bottom: 4px solid lightgrey;
+    margin: 0 auto;  
+}
+
+.product-title{
+    width: 45%; 
+
+}
+.price{
+    width: 15%; 
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid lightgrey;
+}
+.total{
+    width: 10%; 
+    border-bottom: 1px solid lightgrey;
+    display: flex;
+    align-items: center;
+}
+.product{
+    width: 45%;
+    justify-content: space-around;
+    padding: 10px 0;  
+    border-bottom: 1px solid lightgrey;
+    display: flex;
+    align-items: center;
+}
+.quantity{
+    width: 30%; 
+    border-bottom: 1px solid lightgrey;
+    display: flex;
+    align-items: center;
+}

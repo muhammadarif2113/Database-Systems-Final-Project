@@ -6,11 +6,11 @@
 
    <title>Store Cart</title>
    <meta charset="utf-8" />
+   <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet"> 
    <link href="/base.css" rel="stylesheet" />
-   <link href="/cart.css" rel="stylesheet" />
-   <link href="/layout4.css" rel="stylesheet" />
+   <link href="/cart.css" rel="stylesheet" /> 
+   <link href="/layout4.css" rel="stylesheet" />  
    <link href="/store.css" rel="stylesheet"/> 
-   <!--<script src="JS/cart.js"></script> -->
 
 </head>
 
@@ -22,20 +22,37 @@
          <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/carousel">Gallary</a></li>
-            <li><a href="/cart">Online Store</a></li>
+            <li><a href="/store">Store</a></li>
             <li><a href="/login">Sign In</a></li>
             <li><a href="/register">Register</a></li>
             <li><a href="/events">Events</a></li>
+            <li class = "cart"> 
+                <a href="storeCart"> 
+                    <ion-icon name = "basket"> </ion-icon>Cart<span>0</span>
+                </a>
+            </li>
          </ul>
       </nav>
 
    </header>
 
+   <div class="products-container">
+       <div class = "product-header">
+           <h5 class="product-title">PRODUCT</h5>
+           <h5 class="price">PRICE</h5>
+           <h5 class="quantity">QUANTITY</h5>
+           <h5 class="total">TOTAL</h5>
+       </div>
+       <div class="products">
+
+       </div>
+   </div>
+
 
    <footer>
       <nav id="bottom">
          <ul>
-            <li><a href="/">help &amp; info</a></li>
+            <li><a href="/">Home/a></li>
          </ul>
          <ul>
             <li><a href="/carousel">Check our Gallary</a></li>
@@ -47,6 +64,8 @@
       </nav>
       <p>MoMoes Copy Right &copy; 2020 All Rights Reserved</p>
    </footer>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script src= "JS/store.js"> </script>
 </body>
 
 </html>

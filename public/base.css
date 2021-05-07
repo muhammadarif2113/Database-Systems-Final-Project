@@ -53,8 +53,6 @@ nav a {
 }
 
 .vertical-menu ul li {
-
-   background-image: url(/home/moe/Desktop/NodeMySQL/Images/bullet1.png);
    background-repeat: no-repeat;
    line-height: 40px;
    padding-left: 100px;
