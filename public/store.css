@@ -19,14 +19,7 @@
     margin-left: 20px; 
     position: relative; 
     overflow: hidden; 
-    /* width: 200px;  */
-
 }
-
-/* .image img{
-    width: 100%; 
-
-} */
 
 .add-cart{
     position: absolute; 
@@ -38,10 +31,7 @@
     text-align: center; 
 }
 
-/* .image:hover .cart1,
-.image:hover .cart2,
-.image:hover .cart3,
-.image:hover .cart4 { */
+
 .showAddCart{
     bottom: 50px; 
     opacity: 1;

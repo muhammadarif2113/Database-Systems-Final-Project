@@ -57,13 +57,6 @@ function addCartActions(){ //displays add to cart for every item when hovered ov
     }
 }
 
-/*for (let i=0; i< carts.length; i++){
-    carts[i].addEventListener('click', () => {
-        cartNumbers(products[i]);
-        totalCost(products[i]);  
-    })
-}*/
-
 function onLoadCartNumbers(){ //to save cart number when refreshed 
     let productNumbers = localStorage.getItem('cartNumbers'); 
 
