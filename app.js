@@ -35,6 +35,8 @@ db.connect((err) => {
 //define routes
 app.use('/', require('./routes/pages')); 
 app.use('/auth', require('./routes/auth'));
+app.use('/products', require('./routes/products')); //
+
 
 /*app.get('/deleteusertable', (req, res) => {
     let sql = "DROP TABLE User_Account";

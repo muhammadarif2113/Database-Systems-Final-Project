@@ -77,7 +77,7 @@ nav#toptop ul {
    height: 40px;
    border-top: 4px double rgb(211, 211, 211);
    border-bottom: 4px double rgb(211, 211, 211);
-   background-color: rgb(122, 90, 53);
+   background-color: rgb(182, 27, 27);
 }
    
 nav#toptop ul li {
@@ -363,7 +363,7 @@ footer p {
    color: rgb(211, 211, 211);
    font-size: 0.9em;
    text-align: center;
-   background-color: rgb(122, 90, 53);
+   background-color: rgb(182, 27, 27);
    margin: 0px;
    padding: 10px 0px;
 }

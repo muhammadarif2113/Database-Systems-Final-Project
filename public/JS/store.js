@@ -1,109 +1,68 @@
 let carts = document.querySelectorAll('.add-cart'); 
+console.log(carts); 
+let products = []; 
 
-let products = [
-    {
-        name: 'Dallas Mavericks Jersey', 
-        tag: 'dallasmavericksjersey',
-        price: 80, 
-        inCart: 0
-    }, 
-    {
-        name: 'Miami Heat Jersey', 
-        tag: 'miamiheatjersey',
-        price: 80, 
-        inCart: 0
-    },
-    {
-        name: 'Washington Wizards Jersey', 
-        tag: 'washingtonwizardsjersey',
-        price: 80, 
-        inCart: 0
-    },
-    {
-        name: 'LA Lakers Shirt', 
-        tag: 'lalakersshirt',
-        price: 40, 
-        inCart: 0
-    },
-    {
-        name: 'Raptors Shorts', 
-        tag: 'raptorsshorts',
-        price: 40, 
-        inCart: 0
-    },
-    {
-        name: 'Rockets Shorts', 
-        tag: 'rocketsshorts',
-        price: 40, 
-        inCart: 0
-    },
-    {
-        name: 'Sixers Shorts', 
-        tag: 'sixersshorts',
-        price: 40, 
-        inCart: 0
-    },
-    {
-        name: 'Bulls Shorts', 
-        tag: 'bullsshorts',
-        price: 40, 
-        inCart: 0
-    },
-    {
-        name: 'Spalding Basketball', 
-        tag: 'spaldingbasketball',
-        price: 60, 
-        inCart: 0
-    },
-    {
-        name: 'Wilson Basketball', 
-        tag: 'wilsonbasketball',
-        price: 40, 
-        inCart: 0
-    },
-    {
-        name: 'Nike Basketball', 
-        tag: 'nikebasketball',
-        price: 30, 
-        inCart: 0
-    },
-    {
-        name: 'Jordan Basketball', 
-        tag: 'jordanbasketball',
-        price: 30, 
-        inCart: 0
-    },
-    {
-        name: 'Knicks Hat', 
-        tag: 'knickshat',
-        price: 25, 
-        inCart: 0
-    },
-    {
-        name: 'Clippers Hat', 
-        tag: 'clippershat',
-        price: 25, 
-        inCart: 0
-    },
-    {
-        name: 'Celtics Hat', 
-        tag: 'celticshat',
-        price: 25, 
-        inCart: 0
-    },
-    {
-        name: 'Lakers Hat', 
-        tag: 'lakershat',
-        price: 25, 
-        inCart: 0
+async function getProducts(){
+    const response = await axios.get('http://localhost:3001/products'); 
+    console.log(response.data); 
+    products = response.data.products
+
+
+    populateProducts();
+}
+getProducts(); 
+
+
+function populateProducts() {
+    const container = document.querySelector('.container'); 
+
+    const productsHtml = products.map((product, i) => { //in our store 
+        return (
+            `
+            <div class ="image">
+                <img src = "${product.image}" alt="${product.name}" height="200" width="200">
+                <h3> ${product.name}</h3>
+                <h3> $${product.price}</h3>
+                <a class="add-cart cart${i+1}" href="#"> Add Cart </a>
+            </div>
+            `
+        )
+    })
+
+    if(container){
+        container.innerHTML += productsHtml.toString().replaceAll(',', '');
+        addCartActions(); 
+        
     }
-]
-for (let i=0; i< carts.length; i++){
+}
+
+function addCartActions(){ //displays add to cart for every item when hovered over 
+    const hoverProducts = document.getElementsByClassName('image'); 
+    let carts = document.querySelectorAll('.add-cart'); 
+
+    for(let i=0; i<hoverProducts.length; i++){
+        hoverProducts[i].addEventListener('mouseover', () => {
+            carts[i].classList.add('showAddCart'); 
+        })
+        hoverProducts[i].addEventListener('mouseout', () => { //so add to cart disappears when not hovered over 
+            carts[i].classList.remove('showAddCart'); 
+        })
+    }
+
+    for (let i=0; i <carts.length; i++){
+        carts[i].addEventListener('click', () => {
+            cartNumbers(products[i]); 
+            totalCost(products[i]); 
+        })
+    }
+}
+
+/*for (let i=0; i< carts.length; i++){
     carts[i].addEventListener('click', () => {
         cartNumbers(products[i]);
         totalCost(products[i]);  
     })
-}
+}*/
 
 function onLoadCartNumbers(){ //to save cart number when refreshed 
     let productNumbers = localStorage.getItem('cartNumbers'); 
@@ -231,6 +190,7 @@ function deleteButtons(){ //functionality to delete button
         deleteButtons[i].addEventListener('click', () => {   //to get item name the same as item tag 
             productName = deleteButtons[i].parentElement.textContent.trim().toLowerCase().replace(/ /g, '');
             console.log(productName); 
+           // console.log(cartItems[productName]); 
             localStorage.setItem('cartNumbers', productNumbers -  cartItems[productName].inCart ); 
             localStorage.setItem('totalCost', cartCost - (cartItems[productName].price * cartItems[productName].inCart)); 
 
@@ -270,8 +230,10 @@ function manageQuantitiy(){
     }
     for (let i =0; i <increaseButtons.length; i++){
         increaseButtons[i].addEventListener('click', () => {
+            console.log("increase button"); 
             currentQuantity = increaseButtons[i].parentElement.querySelector('span').textContent; 
             console.log(currentQuantity); 
+
             currentProduct = increaseButtons[i].parentElement.previousElementSibling.previousElementSibling.querySelector('span').textContent.toLowerCase().replace(/ /g, '').trim(); 
             console.log(currentProduct); 
 
