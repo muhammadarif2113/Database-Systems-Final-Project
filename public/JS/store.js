@@ -1,9 +1,10 @@
 let carts = document.querySelectorAll('.add-cart'); 
 console.log(carts); 
+let stage = 'dev'; 
 let products = []; 
-
 async function getProducts(){
-    const response = await axios.get('http://localhost:3001/products'); 
+    const host = stage ==='dev' ? 'http://localhost:3001': 'http://143.198.114.216:3001' 
+    const response = await axios.get(`${host}/products`); 
     console.log(response.data); 
     products = response.data.products
 

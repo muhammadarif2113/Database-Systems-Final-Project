@@ -37,11 +37,11 @@ const query = promisify(db.query.bind(db)); */
         }
     })
 })*/
-const {
-    promisify 
-} = require('util'); 
+// const {
+//     promisify 
+// } = require('util'); 
 
-const query = promisify(db.query.bind(db)); 
+// const query = promisify(db.query.bind(db)); 
 
 exports.login = async (req, res) => {
     try {
