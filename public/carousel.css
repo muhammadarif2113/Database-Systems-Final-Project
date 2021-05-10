@@ -1,4 +1,4 @@
-body{
+ body{
     background: #ddd;
 }
 .slide-button {
@@ -52,4 +52,11 @@ body{
     width: 1000px;
     overflow: hidden;
     margin: 0 auto;
+} 
+.row{
+   /* max-width: 100%;*/
+    width: 1020px;
+    border: white;
+    border-width: 5px;
+    
 }

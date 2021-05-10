@@ -43,49 +43,49 @@ const query = promisify(db.query.bind(db)); */
 
 // const query = promisify(db.query.bind(db)); 
 
-exports.login = async (req, res) => {
-    try {
-        const { 
-            username, 
-            password 
-        } = req.body; 
+// exports.login = async (req, res) => {
+//     try {
+//         const { 
+//             username, 
+//             password 
+//         } = req.body; 
 
-        const results = await query ('SELECT * FROM User_Account WHERE username = ?', [username]); 
+//         const results = await query ('SELECT * FROM User_Account WHERE username = ?', [username]); 
 
-        console.log(results); 
+//         console.log(results); 
 
-        if (!results || !(await bcrypt.compare(password, results[0].password))) {
-                res.status(401).render('login', {
-                    message: 'Credentials are incorrect'
-                });
+//         if (!results || !(await bcrypt.compare(password, results[0].password))) {
+//                 res.status(401).render('login', {
+//                     message: 'Credentials are incorrect'
+//                 });
 
-        } else {
-                const user = results[0].user; 
-                const token = jwt.sign({user: username }, process.env.JWT_SECRET, {
-                    expiresIn: process.env.JWT_EXPIRES_IN
-                }); 
+//         } else {
+//                 const user = results[0].user; 
+//                 const token = jwt.sign({user: username }, process.env.JWT_SECRET, {
+//                     expiresIn: process.env.JWT_EXPIRES_IN
+//                 }); 
 
-                console.log("the token is: " + token); 
-                const cookieOptions = {
-                    expires: new Date(
-                        Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
-                    ), 
-                    httpOnly: true
-                }
-                res.cookie('jwt', token, cookieOptions); 
-                res.status(200).redirect("/"); 
-            }
-    } catch (error) {
-        console.log(error);   
-    }
-} 
+//                 console.log("the token is: " + token); 
+//                 const cookieOptions = {
+//                     expires: new Date(
+//                         Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
+//                     ), 
+//                     httpOnly: true
+//                 }
+//                 res.cookie('jwt', token, cookieOptions); 
+//                 res.status(200).redirect("/"); 
+//             }
+//     } catch (error) {
+//         console.log(error);   
+//     }
+// } 
 
 
 
 
  
     
-/*
+
 exports.login = async (req, res) => {
     try {
         const { username, password } = req.body; 
@@ -117,7 +117,7 @@ exports.login = async (req, res) => {
     } catch (error) {
         console.log(error);   
     }
-} */
+} 
 
 
 //add credentials to database when user registers 

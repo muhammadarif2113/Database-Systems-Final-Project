@@ -1,11 +1,13 @@
 let carts = document.querySelectorAll('.add-cart'); 
 console.log(carts); 
-let stage = 'dev'; 
+//let stage = 'dev'; 
 let products = []; 
 async function getProducts(){
-    const host = stage ==='dev' ? 'http://localhost:3001': 'http://143.198.114.216:3001' 
-    const response = await axios.get(`${host}/products`); 
-    console.log(response.data); 
+//    const host = stage ==='dev' ? 'http://localhost:80': 'https://nbastorebutbetter.club' 
+//    const response = await axios.get(`${host}/products`); 
+    const response = await axios.get('http://localhost:3001/products');
+    //const response = await axios.get('http://nbastorebutbetter.club/products');
+   // console.log(response.data); 
     products = response.data.products
 
 
@@ -17,7 +19,7 @@ getProducts();
 function populateProducts() {
     const container = document.querySelector('.container'); 
 
-    const productsHtml = products.map((product, i) => { //in our store 
+    const productsHtml = products.map((product, i) => { 
         return (
             `
             <div class ="image">
