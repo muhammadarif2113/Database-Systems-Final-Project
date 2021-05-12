@@ -2,7 +2,7 @@ exports.productList = [
     {
         name: 'Dallas Mavericks Jersey', 
         description: 'Represent Dallas with this official NBAStore jersey',
-        tag: 'dallasmavericksjersey',
+        tag: 'dallasmavericksjersey1',
         price: 80, 
         inCart: 0, 
         image: 'Images/dallasmavericksjersey.jpg'
@@ -24,12 +24,48 @@ exports.productList = [
         image: 'Images/washingtonwizardsjersey.jpg'
     },
     {
-        name: 'LA Lakers Shirt', 
+        name: 'LA Lakers Jersey', 
         description: 'Represent LA with this official NBAStore jersey',
-        tag: 'lalakersshirt',
-        price: 40, 
+        tag: 'lalakersjersey',
+        price: 80, 
         inCart: 0,
-        image: 'Images/lalakersshirt.jpg'
+        image: 'Images/lalakersjersey.jpg'
+
+    },
+    {
+        name: 'Nets Shirt', 
+        description: 'Represent Brooklyn with this official NBAStore shirt',
+        tag: 'netsshirt',
+        price: 35, 
+        inCart: 0,
+        image: 'Images/netsshirt.jpg'
+
+    },
+    {
+        name: 'Bucks Shirt', 
+        description: 'Represent Bucks with this official NBAStore shirt',
+        tag: 'bucksshirt',
+        price: 35, 
+        inCart: 0,
+        image: 'Images/bucksshirt.jpg'
+
+    },
+    {
+        name: 'Suns Shirt', 
+        description: 'Represent Suns with this official NBAStore shirt',
+        tag: 'sunsshirt',
+        price: 35, 
+        inCart: 0,
+        image: 'Images/sunsshirt.jpg'
+
+    },
+    {
+        name: 'Lakers Shirt', 
+        description: 'Represent LA with this official NBAStore shirt',
+        tag: 'lakersshirt',
+        price: 35, 
+        inCart: 0,
+        image: 'Images/lakersshirt.jpg'
 
     },
     {

@@ -137,3 +137,37 @@
     display: flex;
     align-items: center;
 }
+
+.buyBtnCtn {
+    width: 100%; 
+    padding-top: 20px; 
+    display: flex; 
+    justify-content: flex-end; 
+}
+.startCheckout {
+    padding: 10px 20px; 
+    background-color: rgb(29, 105, 206);
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold; 
+    cursor: pointer; 
+    transition: all 0.5s ease-in-out;
+}
+
+.startCheckout:hover {
+    background-color: rgb(182, 27, 27);
+}
+/*----------------------------------------------------------CHECKOUT SUCCESS-------------------------------*/
+.checkoutSuccessCtn{
+     background-color: rgb(29, 105, 206);
+    text-align: center;
+    padding: 40px; 
+    border-radius: 5px; 
+    margin: 0 auto; 
+    line-height: 20px;
+
+}
+
+.section1{
+    max-height: 1020px;
+}

@@ -10,6 +10,7 @@
    <link href="/base.css" rel="stylesheet" />
    <link href="/layout4.css" rel="stylesheet" />  
    <link href="/store.css" rel="stylesheet"/> 
+   <script src="https://js.stripe.com/v3/"> </script>
 
 </head>
 
@@ -45,6 +46,9 @@
        <div class="products">
 
        </div>
+       <div class="buyBtnCtn">
+          <button id="startCheckout" class="startCheckout"> Checkout </button>
+       </div>
    </div>
 
 
@@ -63,8 +67,10 @@
       </nav>
       <p>Unemployed Students</p>
    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src= "JS/store.js"> </script>
+    <script src= "JS/payment.js"></script>
 </body>
 
 </html>

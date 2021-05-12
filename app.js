@@ -3,8 +3,8 @@ const mysql = require('mysql');
 const path = require('path');
 const http = require('http');
 const fs = require('fs');
-const dotenv = require('dotenv'); 
 const cookieParser = require('cookie-parser'); 
+const dotenv = require('dotenv');  
 dotenv.config({path: './.env'}); 
 
 
@@ -35,7 +35,9 @@ db.connect((err) => {
 //define routes
 app.use('/', require('./routes/pages')); 
 app.use('/auth', require('./routes/auth'));
-app.use('/products', require('./routes/products')); //
+app.use('/products', require('./routes/products')); 
+app.use('/checkout', require('./routes/checkout')); 
+
 
 
 /*app.get('/deleteusertable', (req, res) => {

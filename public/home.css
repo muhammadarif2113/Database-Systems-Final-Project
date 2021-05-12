@@ -4,7 +4,7 @@ html {
    background: rgb(191, 191, 191);
    font-family: Verdana, Geneva, sans-serif;
    font-size: 12px;
-   color: rgb(101, 101, 101);
+   color: black; 
 }
 
 body {
@@ -17,7 +17,7 @@ body {
    max-width: 1020px;
    min-width: 420px; 
    margin: 0px auto; 
-   background: white;
+   background: white; 
    box-shadow: rgb(51, 51, 51) 10px 10px 25px,  rgb(51, 51, 51) -10px 10px 25px;
 }
 
@@ -25,7 +25,24 @@ p {
    font-size: 1.2em;
    line-height: 1.4em;
    margin: 15px;
-   color: black; 
+   margin-top: -10px;
+   text-align: center;
+   background-color:rgb(246, 178, 178); 
+}
+span {
+   font-size: 1.2em;
+   line-height: 1.4em;
+   text-align: center;
+   
+}
+span1 {
+   font-size: 1.2em;
+   line-height: 1.9em;
+   text-align: center;
+}
+span2{
+   font-size: 1.2em;
+   line-height: 1.9em;
    text-align: center;
 }
 
@@ -46,6 +63,11 @@ body > header > section  label {
 body > header > img {
    display: block;
    width: 100%;
+}
+
+img {
+   width: 99.90%;
+   height: 110%; 
 }
 
 
@@ -92,6 +114,16 @@ nav#toptop ul li a {
    text-align: center;
    padding: 50% 0%;
    font-variant: small-caps;
+}
+
+nav#left {
+   height: 1120px;  
+   max-width: 200px; 
+   background-color: rgb(250, 213, 213); 
+}
+
+nav#left ul {
+   color: rgb(250, 213, 213);
 }
 
 nav#toptop ul li a:hover{
@@ -155,7 +187,6 @@ nav#left ul li.newgroup {
 nav#left ul li a {
    color: rgb(101, 101, 101);
 }
-
 
 
 
@@ -359,7 +390,7 @@ footer {
 }
 
 footer p {
-   color: rgb(211, 211, 211);
+   color: rgb(250, 213, 213); 
    font-size: 0.9em;
    text-align: center;
    background-color: rgb(182, 27, 27);
@@ -381,7 +412,8 @@ nav#bottom ul li {
 }
 
 nav#bottom ul a {
-   color: rgb(101, 101, 101);
+   color: rgb(45, 158, 202);
+   margin-left: 50px;
 }
 
 
@@ -392,8 +424,13 @@ nav#bottom {
    flex-flow: row nowrap;
    -webkit-justify-content: center;
    justify-content: center;
+   color: rgb(250, 213, 213);
 }
 
 nav#bottom ul {
    flex: 0 1 150px;
+}
+
+h2{
+   font-size: 20px;
 }

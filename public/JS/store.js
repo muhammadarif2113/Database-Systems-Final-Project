@@ -3,7 +3,7 @@ console.log(carts);
 //let stage = 'dev'; 
 let products = []; 
 async function getProducts(){
-//    const host = stage ==='dev' ? 'http://localhost:80': 'https://nbastorebutbetter.club' 
+//    const host = stage ==='dev' ? 'http://localhost:3001': 'https://nbastorebutbetter.club' 
 //    const response = await axios.get(`${host}/products`); 
     const response = await axios.get('http://localhost:3001/products');
     //const response = await axios.get('http://nbastorebutbetter.club/products');
