@@ -4,12 +4,6 @@ exports.homeCtrlFunction = (req, res) => {
 exports.carouselCtrlFunction = (req, res) => {
     res.render('carousel')
 } //
-//exports.homeCtrlFunction = (req, res) => {
-//    res.render('cart')
-//} //
-//exports.creditCtrlFunction = (req, res) => {
-//    res.render('credit')
-//} //
 exports.eventsCtrlFunction = (req, res) => {
     res.render('events')
 } //

@@ -40,14 +40,14 @@ app.use('/checkout', require('./routes/checkout'));
 
 
 
-/*app.get('/deleteusertable', (req, res) => {
-    let sql = "DROP TABLE User_Account";
-    db.query(sql, (err, result) => {
-      if (err) throw err;
-      console.log("Table deleted");
-      res.send('table deleted')
-    });
-  });*/
+// app.get('/deleteusertable', (req, res) => {
+//     let sql = "DROP TABLE Order_History";
+//     db.query(sql, (err, result) => {
+//       if (err) throw err;
+//       console.log("Table deleted");
+//       res.send('table deleted')
+//     });
+//   });
 
 //Create db 
 app.get('/createdbNBAStore', (req, res) => {
@@ -61,7 +61,7 @@ app.get('/createdbNBAStore', (req, res) => {
 
 //Create table 
 app.get('/createorderhistory', (req, res) => {
-    let sql = 'CREATE TABLE IF NOT EXISTS Order_History(order_id VARCHAR(4) CHARACTER SET utf8, amount INT, state VARCHAR(7) CHARACTER SET utf8, timestamp DATETIME)'; 
+    let sql = 'CREATE TABLE IF NOT EXISTS Order_History(email VARCHAR(40) CHARACTER SET utf8, name VARCHAR(40) CHARACTER SET utf8, total_amount INT, city VARCHAR(70) CHARACTER SET utf8, state VARCHAR(70) CHARACTER SET utf8, country VARCHAR(70) CHARACTER SET utf8, street VARCHAR(70) CHARACTER SET utf8, zip VARCHAR(70) CHARACTER SET utf8)'; 
     db.query(sql, (err, result) => {
         if(err) throw err; 
         console.log(result); 
@@ -126,20 +126,24 @@ app.get('/createinvoicehistory', (req, res) => {
         res.send('Invoice History table created....'); 
     }); 
 }); 
+// app.get('/createcartitems', (req, res) => {
+//     let sql = 'CREATE TABLE IF NOT EXISTS Cart_Items(product_name VARCHAR(300) CHARACTER SET utf8, product_quantity INT, product_amount INT)'; 
+//     db.query(sql, (err, result) => {
+//         if(err) throw err; 
+//         console.log(result); 
+//         res.send('Cart Items table created....'); 
+//     }); 
+// }); 
+
 
 
 //Insert table
 app.get('/insertorderhistory', (req, res) => { 
-//    let post = {order_id:'#001', amount:4, state: 'shipped', timestamp: '2021-04-20 00:00:00', order_id:'#002', amount:5, state: 'shipped', timestamp: '2021-04-20 00:00:00',order_id:'#003', amount:2, state: 'shipped', timestamp: '2021-04-22 00:00:00', order_id:'#003', amount:2, state: 'shipped', timestamp: '2021-04-22 00:00:00', order_id:'#004', amount:1, state: 'shipped', timestamp: '2021-04-22 00:00:00', order_id:'#005', amount:1, state: 'packing', timestamp: '2021-04-23 00:00:00'}; 
     let values = [
-        ['#001', 4, 'shipped', '2021-04-20 00:00:00'], 
-        ['#002', 5, 'shipped', '2021-04-20 00:00:00'], 
-        ['#003', 2, 'shipped', '2021-04-22 00:00:00'], 
-        ['#004', 1, 'shipped', '2021-04-22 00:00:00'], 
-        ['#005', 1, 'packing', '2021-04-23 00:00:00'], 
-
+        ['user@gmail.com', 'user', 100, 'Brooklyn', 'NY', 'US', '123 Main St', '11214'], 
+        ['user2@gmail.com', 'user2', 300, 'Queens', 'NY', 'US', '3434 Ave U', '11209']
     ];
-    let sql = 'INSERT INTO Order_History (order_id, amount, state, timestamp) VALUES ?'; 
+    let sql = 'INSERT INTO Order_History (email, name, total_amount, city, state, country, street, zip) VALUES ?'; 
     let query = db.query(sql, [values], (err, result) => {
         if(err) throw err; 
         console.log(result); 

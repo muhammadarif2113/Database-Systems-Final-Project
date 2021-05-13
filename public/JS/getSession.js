@@ -1,10 +1,12 @@
-const host = 'http://localhost:3001';
+//const host = 'http://localhost:3001';
+const host = 'http://nbastorebutbetter.club/products';
+
 
 const localStorageSession = localStorage.getItem('sessionId'); 
 console.log(localStorageSession); 
 
 if(!localStorageSession) {
-    window.location.replace('http://localhost:3001'); 
+    window.location.replace(host); 
 }
 
 async function getSession(){

@@ -3,7 +3,9 @@
 //const host = await axios.get('http://nbastorebutbetter.club/products');
 //const host =  axios.get('http://localhost:3001');
 
-const host = 'http://localhost:3001'
+///const host = 'http://localhost:3001'
+const host = 'http://nbastorebutbetter.club/products'
+
 
 const stripe = Stripe('pk_test_51IpTKjICt0mRPXVSdjOawpBjFgwUYBZSgaYDFNhF20AVyEMsrcORkCSnVe3eI25LNcwNoFLbUbiBxmArI8IVEDr500eyV5EVLw');
 

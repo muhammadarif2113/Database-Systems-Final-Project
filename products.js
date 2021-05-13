@@ -2,7 +2,7 @@ exports.productList = [
     {
         name: 'Dallas Mavericks Jersey', 
         description: 'Represent Dallas with this official NBAStore jersey',
-        tag: 'dallasmavericksjersey1',
+        tag: 'dallasmavericksjersey',
         price: 80, 
         inCart: 0, 
         image: 'Images/dallasmavericksjersey.jpg'
