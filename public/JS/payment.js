@@ -1,8 +1,8 @@
 //Connecting stripe (payment processing app) to our store's checkout
 
 
-const host = 'http://localhost:3001'
-///const host = 'http://nbastorebutbetter.club'
+//const host = 'http://localhost:3001' //used when developing
+const host = 'http://nbastorebutbetter.club' //used when in production 
 
 
 const stripe = Stripe('pk_test_51IpTKjICt0mRPXVSdjOawpBjFgwUYBZSgaYDFNhF20AVyEMsrcORkCSnVe3eI25LNcwNoFLbUbiBxmArI8IVEDr500eyV5EVLw');

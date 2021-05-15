@@ -1,5 +1,5 @@
-const host = 'http://localhost:3001';
-///const host = 'http://nbastorebutbetter.club/products';
+//const host = 'http://localhost:3001'; //used when developing
+const host = 'http://nbastorebutbetter.club/products'; //when when in production 
 
 //to get the local storage session from users in the checkout page
 

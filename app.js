@@ -195,6 +195,6 @@ app.get('/deletepost/:order_id', (req, res) => {
 });
 */
 
-app.listen('3001', () => { 
-    console.log('Server started 3001');  
+app.listen('80', () => { 
+    console.log('Server started 80');  
 }); 

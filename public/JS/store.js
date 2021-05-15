@@ -4,8 +4,8 @@ let carts = document.querySelectorAll('.add-cart');
 console.log(carts); 
 let products = []; 
 async function getProducts(){
-    const response = await axios.get('http://localhost:3001/products');
-    //const response = await axios.get('http://nbastorebutbetter.club/products');
+    //const response = await axios.get('http://localhost:3001/products'); //used when developing 
+    const response = await axios.get('http://nbastorebutbetter.club/products'); //used when in production 
     products = response.data.products
 
 
