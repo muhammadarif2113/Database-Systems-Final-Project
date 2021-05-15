@@ -1,3 +1,4 @@
+//routes needed for registering users and loggin in 
 const express = require('express'); 
 const authController = require('../controllers/auth'); 
 const router = express.Router(); 

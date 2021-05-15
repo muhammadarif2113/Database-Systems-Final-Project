@@ -1,3 +1,4 @@
+//js code for events tab
 "use strict";
 
 var thisDay = new Date();

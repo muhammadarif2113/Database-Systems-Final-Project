@@ -1,10 +1,8 @@
-//stage = 'prod';
-//const host = stage === 'dev' ? 'http://localhost:3001' : 'http://nbastorebutbetter.club'; 
-//const host = await axios.get('http://nbastorebutbetter.club/products');
-//const host =  axios.get('http://localhost:3001');
+//Connecting stripe (payment processing app) to our store's checkout
 
-///const host = 'http://localhost:3001'
-const host = 'http://nbastorebutbetter.club/products'
+
+const host = 'http://localhost:3001'
+///const host = 'http://nbastorebutbetter.club'
 
 
 const stripe = Stripe('pk_test_51IpTKjICt0mRPXVSdjOawpBjFgwUYBZSgaYDFNhF20AVyEMsrcORkCSnVe3eI25LNcwNoFLbUbiBxmArI8IVEDr500eyV5EVLw');

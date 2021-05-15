@@ -1,9 +1,11 @@
+//how our products will look in the store tab
+
 let carts = document.querySelectorAll('.add-cart'); 
 console.log(carts); 
 let products = []; 
 async function getProducts(){
-    //const response = await axios.get('http://localhost:3001/products');
-    const response = await axios.get('http://nbastorebutbetter.club/products');
+    const response = await axios.get('http://localhost:3001/products');
+    //const response = await axios.get('http://nbastorebutbetter.club/products');
     products = response.data.products
 
 

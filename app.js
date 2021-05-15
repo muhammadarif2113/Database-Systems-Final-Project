@@ -1,3 +1,6 @@
+//this will be the main server file for our project 
+//this includes the sql codes to create the database and its tables
+
 const express = require('express'); 
 const mysql = require('mysql'); 
 const path = require('path');
@@ -6,7 +9,6 @@ const fs = require('fs');
 const cookieParser = require('cookie-parser'); 
 const dotenv = require('dotenv');  
 dotenv.config({path: './.env'}); 
-
 
 
 const db = mysql.createConnection({
@@ -39,15 +41,15 @@ app.use('/products', require('./routes/products'));
 app.use('/checkout', require('./routes/checkout')); 
 
 
-
-// app.get('/deleteusertable', (req, res) => {
-//     let sql = "DROP TABLE Order_History";
-//     db.query(sql, (err, result) => {
-//       if (err) throw err;
-//       console.log("Table deleted");
-//       res.send('table deleted')
-//     });
-//   });
+//delete table code 
+app.get('/deleteorderhistory', (req, res) => {
+    let sql = "DROP TABLE Inventory";
+    db.query(sql, (err, result) => {
+      if (err) throw err;
+      console.log("Table deleted");
+      res.send('table deleted')
+    });
+  });
 
 //Create db 
 app.get('/createdbNBAStore', (req, res) => {
@@ -61,30 +63,53 @@ app.get('/createdbNBAStore', (req, res) => {
 
 //Create table 
 app.get('/createorderhistory', (req, res) => {
-    let sql = 'CREATE TABLE IF NOT EXISTS Order_History(email VARCHAR(40) CHARACTER SET utf8, name VARCHAR(40) CHARACTER SET utf8, total_amount INT, city VARCHAR(70) CHARACTER SET utf8, state VARCHAR(70) CHARACTER SET utf8, country VARCHAR(70) CHARACTER SET utf8, street VARCHAR(70) CHARACTER SET utf8, zip VARCHAR(70) CHARACTER SET utf8)'; 
+    let sql = 'CREATE TABLE IF NOT EXISTS Order_History(email VARCHAR(40) CHARACTER SET utf8, name VARCHAR(40) CHARACTER SET utf8, total_amount INT)'; 
     db.query(sql, (err, result) => {
         if(err) throw err; 
         console.log(result); 
         res.send('Order_History table created....'); 
     }); 
 }); 
-app.get('/createorderitem', (req, res) => {
-    let sql = 'CREATE TABLE IF NOT EXISTS Order_Item(order_item VARCHAR(19) CHARACTER SET utf8, quantity INT)'; 
+app.get('/createinventory', (req, res) => {
+    let sql = 'CREATE TABLE IF NOT EXISTS Inventory(item_name VARCHAR(100) CHARACTER SET utf8, description VARCHAR(1000) CHARACTER SET utf8, price INT, count INT)'; 
     db.query(sql, (err, result) => {
         if(err) throw err; 
         console.log(result); 
-        res.send('Order_Item table created....'); 
+        res.send('Inventory table created....'); 
     }); 
 }); 
-app.get('/createorders', (req, res) => {
-    let sql = 'CREATE TABLE IF NOT EXISTS Orders(order_id VARCHAR(4) CHARACTER SET utf8, order_date DATETIME, total_amount INT, state VARCHAR(7) CHARACTER SET utf8)'; 
+app.get('/createaddress', (req, res) => {
+    let sql = 'CREATE TABLE IF NOT EXISTS Address(name VARCHAR(40) CHARACTER SET utf8, city VARCHAR(70) CHARACTER SET utf8, state VARCHAR(70) CHARACTER SET utf8, country VARCHAR(70) CHARACTER SET utf8, street VARCHAR(70) CHARACTER SET utf8, zip VARCHAR(70) CHARACTER SET utf8)'; 
     db.query(sql, (err, result) => {
         if(err) throw err; 
         console.log(result); 
-        res.send('Orders table created....'); 
+        res.send('Address table created....'); 
     }); 
 }); 
-
+app.get('/createemailsent', (req, res) => {
+    let sql = 'CREATE TABLE IF NOT EXISTS Email_Sent(email VARCHAR(40) CHARACTER SET utf8, email_sent BOOLEAN)'; 
+    db.query(sql, (err, result) => {
+        if(err) throw err; 
+        console.log(result); 
+        res.send('Email_Sent table created....'); 
+    }); 
+}); 
+app.get('/createpaymentinfo', (req, res) => {
+    let sql = 'CREATE TABLE IF NOT EXISTS Payment_Info(email VARCHAR(40) CHARACTER SET utf8, name VARCHAR(40) CHARACTER SET utf8, payment_status VARCHAR(100) CHARACTER SET utf8, payment_method VARCHAR(100) CHARACTER SET utf8, payment_intent VARCHAR(100) CHARACTER SET utf8)'; 
+    db.query(sql, (err, result) => {
+        if(err) throw err; 
+        console.log(result); 
+        res.send('createpaymentinfo table created....'); 
+    }); 
+});
+app.get('/createusersession', (req, res) => {
+    let sql = 'CREATE TABLE IF NOT EXISTS User_Session(email VARCHAR(100) CHARACTER SET utf8, name VARCHAR(100) CHARACTER SET utf8, id VARCHAR(200) CHARACTER SET utf8, customer VARCHAR(100) CHARACTER SET utf8)'; 
+    db.query(sql, (err, result) => {
+        if(err) throw err; 
+        console.log(result); 
+        res.send('createpaymentinfo table created....'); 
+    }); 
+});
 app.get('/createuseraccount', (req, res) => {
     let sql = 'CREATE TABLE IF NOT EXISTS User_Account(username VARCHAR(80) CHARACTER SET utf8, password VARCHAR(80) CHARACTER SET utf8, phone_number VARCHAR(80) CHARACTER SET utf8)'; 
     db.query(sql, (err, result) => {
@@ -93,189 +118,49 @@ app.get('/createuseraccount', (req, res) => {
         res.send('User_Account table created....'); 
     }); 
 });
-
-app.get('/createaddress', (req, res) => {
-    let sql = 'CREATE TABLE IF NOT EXISTS Address(name VARCHAR(30) CHARACTER SET utf8, street_address VARCHAR(30) CHARACTER SET utf8, city VARCHAR(30) CHARACTER SET utf8, state VARCHAR(30) CHARACTER SET utf8, zip INT)'; 
+app.get('/createcartitems', (req, res) => {
+    let sql = 'CREATE TABLE IF NOT EXISTS Cart_Items(product_name VARCHAR(300) CHARACTER SET utf8, product_quantity INT, product_amount INT)'; 
     db.query(sql, (err, result) => {
         if(err) throw err; 
         console.log(result); 
-        res.send('Address table created....'); 
+        res.send('Cart Items table created....'); 
     }); 
 }); 
-app.get('/createcreditcard', (req, res) => {
-    let sql = 'CREATE TABLE IF NOT EXISTS Credit_card(credit_card_id INT, credit_card_num INT, holder_name VARCHAR(30) CHARACTER SET utf8, expire_date DATETIME)'; 
-    db.query(sql, (err, result) => {
-        if(err) throw err; 
-        console.log(result); 
-        res.send('Credit card table created....'); 
-    }); 
-}); 
-app.get('/createinvoice', (req, res) => {
-    let sql = 'CREATE TABLE IF NOT EXISTS Invoice(invoice_id INT, creation_date DATETIME)'; 
-    db.query(sql, (err, result) => {
-        if(err) throw err; 
-        console.log(result); 
-        res.send('Invoice table created....'); 
-    }); 
-}); 
-app.get('/createinvoicehistory', (req, res) => {
-    let sql = 'CREATE TABLE IF NOT EXISTS Invoice_History(invoice_state_id INT, timestamp_date DATETIME, state VARCHAR(30) CHARACTER SET utf8)'; 
-    db.query(sql, (err, result) => {
-        if(err) throw err; 
-        console.log(result); 
-        res.send('Invoice History table created....'); 
-    }); 
-}); 
-// app.get('/createcartitems', (req, res) => {
-//     let sql = 'CREATE TABLE IF NOT EXISTS Cart_Items(product_name VARCHAR(300) CHARACTER SET utf8, product_quantity INT, product_amount INT)'; 
-//     db.query(sql, (err, result) => {
-//         if(err) throw err; 
-//         console.log(result); 
-//         res.send('Cart Items table created....'); 
-//     }); 
-// }); 
-
-
-
 //Insert table
-app.get('/insertorderhistory', (req, res) => { 
+app.get('/insertinventory', (req, res) => { 
     let values = [
-        ['user@gmail.com', 'user', 100, 'Brooklyn', 'NY', 'US', '123 Main St', '11214'], 
-        ['user2@gmail.com', 'user2', 300, 'Queens', 'NY', 'US', '3434 Ave U', '11209']
-    ];
-    let sql = 'INSERT INTO Order_History (email, name, total_amount, city, state, country, street, zip) VALUES ?'; 
-    let query = db.query(sql, [values], (err, result) => {
-        if(err) throw err; 
-        console.log(result); 
-        res.send('inserted...'); 
-    });
-});
-app.get('/insertorderitem', (req, res) => { 
-        let values = [
-            ['laker jersey', 4], 
-            ['spalding basketball', 5], 
-            ['nets jersey', 2], 
-            ['jazz jersey', 1], 
-            ['lakers t-shirt', 1] 
-    
-        ];
-        let sql = 'INSERT INTO Order_Item (order_item, quantity) VALUES ?'; 
-        let query = db.query(sql, [values], (err, result) => {
-            if(err) throw err; 
-            console.log(result); 
-            res.send('inserted...'); 
-        });
-    });
-app.get('/insertorders', (req, res) => { 
-    let values = [
-        ['#001', '2021-04-20 00:00:00', 4, 'shipped'], 
-        ['#002', '2021-04-20 00:00:00', 5, 'shipped'], 
-        ['#003', '2021-04-22 00:00:00', 2, 'shipped'], 
-        ['#004', '2021-04-22 00:00:00', 1, 'shipped'], 
-        ['#005', '2021-04-23 00:00:00', 1, 'shipped'], 
+        ['Dallas Mavericks Jersey', 'Represent Dallas with this official NBAStore jersey', 80, 200], 
+        ['Miami Heat Jersey', 'Represent Miami with this official NBAStore jersey', 80, 200],
+        ['Washington Wizards Jersey', 'Represent Washington with this official NBAStore jersey', 80, 200],
+        ['LA Lakers Jersey', 'Represent LA with this official NBAStore jersey', 80, 200],
 
-    ];
-    let sql = 'INSERT INTO Orders (order_id, order_date, total_amount, state) VALUES ?'; 
-    let query = db.query(sql, [values], (err, result) => {
-        if(err) throw err; 
-        console.log(result); 
-        res.send('inserted...'); 
-    });
-});    
-app.get('/insertuseraccount', (req, res) => { 
-    let values = [
-        ['oscarm', 'oscarp', '3474532464'], 
-        ['tommike', 'tomp', '5342446543'], 
-        ['jennifer22', 'jenniferp', '7453242341'], 
-        ['herbert1', 'herbertp', '3246453423'], 
-        ['jose90', 'josep', '3426432343']
+        ['Nets Shirt', 'Represent Brooklyn with this official NBAStore shirt', 35, 200],
+        ['Bucks Shirt', 'Represent Bucks with this official NBAStore shirt', 35, 200],
+        ['Suns Shirt', 'Represent Suns with this official NBAStore shirt', 35, 200],
+        ['Lakers Shirt', 'Represent LA with this official NBAStore shirt', 35, 200],
 
+        ['Raptors Shorts', 'Rock our very own Raptors Shorts!', 40, 200],
+        ['Rockets Shirt', 'Rock our very own Rockets Shorts!', 40, 200],
+        ['Sixers Shirt', 'Rock our very own Sixers Shorts!', 40, 200],
+        ['Bulls Shirt', 'Rock our very own Bulls Shorts!', 40, 200],
+
+        ['Spalding Basketball', 'Train with the finest equipment, get the Spalding Basketball!', 60, 200],
+        ['Wilson Basketball', 'Train with the finest equipment, get the Wilson Basketball!', 40, 200],
+        ['Nike Basketball', 'Train with the finest equipment, get the Nike Basketball!', 30, 200],
+        ['Jordan Basketball', 'Train with the finest equipment, get the Jordan Basketball!', 30, 200],
+        
+        ['Knicks Hat', 'Represent your team with the draft day Knicks Hat!', 25, 200],
+        ['Clippers Hat', 'Represent your team with the draft day Clippers Hat!', 25, 200],
+        ['Celtics Hat', 'Represent your team with the draft day Celtics Hat!', 25, 200],
+        ['Lakers Hat', 'Represent your team with the draft day Lakers Hat!', 25, 200]
     ];
-    let sql = 'INSERT INTO User_Account (username, password, phone_number) VALUES ?'; 
+    let sql = 'INSERT INTO Inventory (item_name, description, price, count) VALUES ?'; 
     let query = db.query(sql, [values], (err, result) => {
-        if(err) throw err; 
+    if(err) throw err; 
         console.log(result); 
         res.send('inserted...'); 
     });
 }); 
-app.get('/insertaddress', (req, res) => { 
-    let values = [
-        ['Oscar Morales', '3451 Ave U', 'Brooklyn', 'New York', 11233], 
-        ['Tom Mike', '5343 Ave M', 'Hawthorne', 'New Jersey', 43256], 
-        ['Jennifer Lu', '3454 Ave L', 'Boston', 'Massachusetts', 43243], 
-        ['Herbert Hoover', '3243 Ave P', 'Allentown', 'Pennsylvania', 65465], 
-        ['Jose Tito', '9545 Ave K', 'Chicago', 'Illinois', 34346]
-
-    ];
-    let sql = 'INSERT INTO Address (name, street_address, city, state, zip) VALUES ?'; 
-    let query = db.query(sql, [values], (err, result) => {
-        if(err) throw err; 
-        console.log(result); 
-        res.send('inserted...'); 
-    });
-});  
-app.get('/insertorderhistory', (req, res) => { 
-        let values = [
-            [241, '2021-01-02 00:00:00'], 
-            [242, '2021-01-03 00:00:00'], 
-            [243, '2021-01-04 00:00:00'], 
-            [245, '2021-01-05 00:00:00'], 
-            [246, '2021-01-06 00:00:00'] 
-    
-        ];
-        let sql = 'INSERT INTO Invoice (invoice_id, creation_date) VALUES ?'; 
-        let query = db.query(sql, [values], (err, result) => {
-            if(err) throw err; 
-            console.log(result); 
-            res.send('inserted...'); 
-    });
-});
-app.get('/insertinvoicehistory', (req, res) => { 
-        let values = [
-            [11,'2021-02-13 00:00:00','New York'],
-            [22,'2021-03-14 00:00:00','New York'],
-            [33,'2021-04-15 00:00:00','New Jersey'],
-            [44,'2021-05-16 00:00:00','Boston'],
-            [55,'2021-06-17 00:00:00','New Jersey']
-    
-        ];
-        let sql = 'INSERT INTO Order_History (invoice_state_id, timestamp_date, state) VALUES ?'; 
-        let query = db.query(sql, [values], (err, result) => {
-            if(err) throw err; 
-            console.log(result); 
-            res.send('inserted...'); 
-        });
-    });
-app.get('/insertcreditcard', (req, res) => { 
-        let values = [
-            [100, 222345666, 'Jake Miuke', '2025-01-03 00:00:00'], 
-            [150, 23456678, 'Tomy Lue', '2021-01-04 00:00:00'], 
-            [200, 456789765, 'Ali Salh', '2026-02-01 00:00:00'], 
-            [300, 323456556, 'Joon Sin', '2027-03-01 00:00:00'], 
-            [400, 234543456, 'Sam Aman', '2026-04-02 00:00:00'], 
-        ];
-        let sql = 'INSERT INTO Credit_card (credit_card_id, credit_card_num, holder_name, expire_date) VALUES ?'; 
-        let query = db.query(sql, [values], (err, result) => {
-            if(err) throw err; 
-            console.log(result); 
-            res.send('inserted...'); 
-    });
-});
-app.get('/insertinvoice', (req, res) => { 
-        let values = [
-            [241,'2020-01-02 00:00:00'],
-            [242,'2020-01-03 00:00:00'],
-            [243,'2020-01-04 00:00:00'],
-            [245,'2020-01-05 00:00:00'],
-            [246,'2020-01-06 00:00:00']
-        ];
-        let sql = 'INSERT INTO Invoice (invoice_id, creation_date) VALUES ?'; 
-        let query = db.query(sql, [values], (err, result) => {
-            if(err) throw err; 
-            console.log(result); 
-            res.send('inserted...'); 
-    });
-});
 /*
 //Select posts 
 app.get('/getpost/:id', (req, res) => { 

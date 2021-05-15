@@ -1,14 +1,16 @@
-//const host = 'http://localhost:3001';
-const host = 'http://nbastorebutbetter.club/products';
+const host = 'http://localhost:3001';
+///const host = 'http://nbastorebutbetter.club/products';
 
+//to get the local storage session from users in the checkout page
 
 const localStorageSession = localStorage.getItem('sessionId'); 
 console.log(localStorageSession); 
-
+//if there is no localstorage info, redirect user to home page 
+//security measure so any user cant access the thankyoucheckout page
 if(!localStorageSession) {
     window.location.replace(host); 
 }
-
+//clear localstorage after a user successfully checks out
 async function getSession(){
     const response = await axios.get(`${host}/checkout/session/${localStorageSession}`); 
 

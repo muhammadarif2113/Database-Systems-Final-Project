@@ -1,3 +1,4 @@
+//all the products we will will be coming from here
 exports.productList = [
     {
         name: 'Dallas Mavericks Jersey', 
@@ -173,3 +174,4 @@ exports.productList = [
 
     }
 ]
+

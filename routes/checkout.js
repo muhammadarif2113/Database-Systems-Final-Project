@@ -1,3 +1,5 @@
+// routes needed to checkout
+
 const express = require('express');  
 const { checkoutCtrlFunction, cartSuccessFunction, finishOrder } = require('../controllers/checkoutCtrlFile');  
 

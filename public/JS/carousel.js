@@ -1,3 +1,4 @@
+//javascript for our carousel tab
 $(document).ready(function () {
     var $slider = $('.slider'); // class or id of carousel slider
     var $slide = 'li'; // could also use 'img' if you're not using a ul

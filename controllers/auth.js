@@ -1,3 +1,5 @@
+//this file enables users to create accounts and log in to them
+//code for storing info in User_Account table
 const mysql = require("mysql"); 
 const jwt = require('jsonwebtoken'); 
 const bcrypt = require('bcryptjs'); 
@@ -79,13 +81,7 @@ const query = promisify(db.query.bind(db)); */
 //         console.log(error);   
 //     }
 // } 
-
-
-
-
- 
-    
-
+//login to user account if credentials already are in database
 exports.login = async (req, res) => {
     try {
         const { username, password } = req.body; 

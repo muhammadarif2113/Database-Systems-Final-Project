@@ -1,3 +1,5 @@
+//We connect with sendin blue to send users that have successfully checkout out emails of their recent purchase
+
 const nodemailer = require('nodemailer'); 
 const {htmlToText} = require('html-to-text'); 
 const pug = require('pug'); 
