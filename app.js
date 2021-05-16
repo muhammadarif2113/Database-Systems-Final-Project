@@ -40,7 +40,6 @@ app.use('/auth', require('./routes/auth'));
 app.use('/products', require('./routes/products')); 
 app.use('/checkout', require('./routes/checkout')); 
 
-//<<<<<<< HEAD
 //delete table code
 app.get('/deleteaddress', (req, res) => {
     let sql = "DROP TABLE Address";
@@ -50,9 +49,6 @@ app.get('/deleteaddress', (req, res) => {
       res.send('table deleted')
     });
   });
-
-//=======
-//>>>>>>> 5a7ba7303e94b176f3f848e3934edbcab65c1820
 
 //Create db 
 app.get('/createdbNBAStore', (req, res) => {
