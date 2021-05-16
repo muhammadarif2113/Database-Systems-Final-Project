@@ -18,7 +18,7 @@ startCheckout.addEventListener('click', () => {
 function myProducts(){
     const getProducts = JSON.parse(localStorage.getItem('productsInCart')); 
 
-    const products = [ ];
+    const products = [];
 
     console.log(getProducts);  
     for( const property in getProducts){

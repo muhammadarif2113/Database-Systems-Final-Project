@@ -40,8 +40,69 @@ app.use('/auth', require('./routes/auth'));
 app.use('/products', require('./routes/products')); 
 app.use('/checkout', require('./routes/checkout')); 
 
+app.get('/deleteaddress', (req, res) => {
+    let sql = "DROP TABLE Address";
+    db.query(sql, (err, result) => {
+      if (err) throw err;
+      console.log("Table deleted");
+      res.send('table deleted')
+    });
+  });
 
-//delete table code 
+app.get('/deletecartitems', (req, res) => {
+    let sql = "DROP TABLE Cart_Items";
+    db.query(sql, (err, result) => {
+      if (err) throw err;
+      console.log("Table deleted");
+      res.send('table deleted')
+    });
+  });
+
+app.get('/deleteemailsent', (req, res) => {
+    let sql = "DROP TABLE Email_Sent";
+    db.query(sql, (err, result) => {
+      if (err) throw err;
+      console.log("Table deleted");
+      res.send('table deleted')
+    });
+  });
+
+app.get('/deleteinventory', (req, res) => {
+    let sql = "DROP TABLE Inventory";
+    db.query(sql, (err, result) => {
+      if (err) throw err;
+      console.log("Table deleted");
+      res.send('table deleted')
+    });
+  });
+
+app.get('/deleteorderhistory', (req, res) => {
+    let sql = "DROP TABLE Order_History";
+    db.query(sql, (err, result) => {
+      if (err) throw err;
+      console.log("Table deleted");
+      res.send('table deleted')
+    });
+  });
+
+app.get('/deletepaymentinfo', (req, res) => {
+    let sql = "DROP TABLE Payment_Info";
+    db.query(sql, (err, result) => {
+      if (err) throw err;
+      console.log("Table deleted");
+      res.send('table deleted')
+    });
+  });
+
+app.get('/deleteuseraccount', (req, res) => {
+    let sql = "DROP TABLE User_Account";
+    db.query(sql, (err, result) => {
+      if (err) throw err;
+      console.log("Table deleted");
+      res.send('table deleted')
+    });
+  });
+
 app.get('/deleteorderhistory', (req, res) => {
     let sql = "DROP TABLE Inventory";
     db.query(sql, (err, result) => {
@@ -50,6 +111,47 @@ app.get('/deleteorderhistory', (req, res) => {
       res.send('table deleted')
     });
   });
+
+//delete table code 
+/*app.get('/deleteinvoicehistory', (req, res) => {
+    let sql = "DROP TABLE Invoice_History";
+    db.query(sql, (err, result) => {
+      if (err) throw err;
+      console.log("Table deleted");
+      res.send('table deleted')
+    });
+  });
+//delete table code
+app.get('/deleteinvoicehistory', (req, res) => {
+    let sql = "DROP TABLE Invoice_History";
+    db.query(sql, (err, result) => {
+      if (err) throw err;
+      console.log("Table deleted");
+      res.send('table deleted')
+    });
+  });
+
+
+
+//delete table code
+app.get('/deleteorderitem', (req, res) => {
+    let sql = "DROP TABLE Order_Item";
+    db.query(sql, (err, result) => {
+      if (err) throw err;
+      console.log("Table deleted");
+      res.send('table deleted')
+    });
+  });
+
+//delete table code
+app.get('/deleteorders', (req, res) => {
+    let sql = "DROP TABLE Orders";
+    db.query(sql, (err, result) => {
+      if (err) throw err;
+      console.log("Table deleted");
+      res.send('table deleted')
+    });
+  });*/
 
 //Create db 
 app.get('/createdbNBAStore', (req, res) => {
