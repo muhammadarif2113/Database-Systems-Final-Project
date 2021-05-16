@@ -34,24 +34,17 @@ exports.checkoutCtrlFunction = async (req, res) => {
                               currency: 'usd', 
                               quantity: singleProductFrontend.inCart
                           })
-                          //all items added to cart are added to database 
-                          if(singleProductFrontend.inCart > 1){
+                          //all items added to cart are added to database * by quantity to get right price
                             let q = `INSERT INTO Cart_Items(product_name, product_quantity, product_amount) 
                             VALUES("${singleProductList.name}", ${singleProductFrontend.inCart}, ${singleProductList.price * singleProductFrontend.inCart})`;
-                            db.query(q);             
-
-                          } else {
-                            let q = `INSERT INTO Cart_Items(product_name, product_quantity, product_amount) 
-                            VALUES("${singleProductList.name}", ${singleProductFrontend.inCart}, ${singleProductList.price})`;
-                            db.query(q);             
-                         }          
+                            db.query(q);                      
                       }
                   })
 
               })
               return products 
           }
-           console.log(productsToBuy()); 
+           //console.log(productsToBuy()); 
 
            const session = await stripe.checkout.sessions.create({
               payment_method_types: ['card'], 
