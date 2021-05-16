@@ -40,6 +40,8 @@ app.use('/auth', require('./routes/auth'));
 app.use('/products', require('./routes/products')); 
 app.use('/checkout', require('./routes/checkout')); 
 
+<<<<<<< HEAD
+//delete table code
 app.get('/deleteaddress', (req, res) => {
     let sql = "DROP TABLE Address";
     db.query(sql, (err, result) => {
@@ -49,79 +51,8 @@ app.get('/deleteaddress', (req, res) => {
     });
   });
 
-app.get('/deletecartitems', (req, res) => {
-    let sql = "DROP TABLE Cart_Items";
-    db.query(sql, (err, result) => {
-      if (err) throw err;
-      console.log("Table deleted");
-      res.send('table deleted')
-    });
-  });
-
-app.get('/deleteemailsent', (req, res) => {
-    let sql = "DROP TABLE Email_Sent";
-    db.query(sql, (err, result) => {
-      if (err) throw err;
-      console.log("Table deleted");
-      res.send('table deleted')
-    });
-  });
-
-app.get('/deleteinventory', (req, res) => {
-    let sql = "DROP TABLE Inventory";
-    db.query(sql, (err, result) => {
-      if (err) throw err;
-      console.log("Table deleted");
-      res.send('table deleted')
-    });
-  });
-
-app.get('/deleteorderhistory', (req, res) => {
-    let sql = "DROP TABLE Order_History";
-    db.query(sql, (err, result) => {
-      if (err) throw err;
-      console.log("Table deleted");
-      res.send('table deleted')
-    });
-  });
-
-app.get('/deletepaymentinfo', (req, res) => {
-    let sql = "DROP TABLE Payment_Info";
-    db.query(sql, (err, result) => {
-      if (err) throw err;
-      console.log("Table deleted");
-      res.send('table deleted')
-    });
-  });
-
-app.get('/deleteuseraccount', (req, res) => {
-    let sql = "DROP TABLE User_Account";
-    db.query(sql, (err, result) => {
-      if (err) throw err;
-      console.log("Table deleted");
-      res.send('table deleted')
-    });
-  });
-
-app.get('/deleteorderhistory', (req, res) => {
-    let sql = "DROP TABLE Inventory";
-    db.query(sql, (err, result) => {
-      if (err) throw err;
-      console.log("Table deleted");
-      res.send('table deleted')
-    });
-  });
-
-//delete table code 
-/*app.get('/deleteinvoicehistory', (req, res) => {
-    let sql = "DROP TABLE Invoice_History";
-    db.query(sql, (err, result) => {
-      if (err) throw err;
-      console.log("Table deleted");
-      res.send('table deleted')
-    });
-  });
-*/
+=======
+>>>>>>> 5a7ba7303e94b176f3f848e3934edbcab65c1820
 
 //Create db 
 app.get('/createdbNBAStore', (req, res) => {
