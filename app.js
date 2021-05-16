@@ -121,37 +121,7 @@ app.get('/deleteorderhistory', (req, res) => {
       res.send('table deleted')
     });
   });
-//delete table code
-app.get('/deleteinvoicehistory', (req, res) => {
-    let sql = "DROP TABLE Invoice_History";
-    db.query(sql, (err, result) => {
-      if (err) throw err;
-      console.log("Table deleted");
-      res.send('table deleted')
-    });
-  });
-
-
-
-//delete table code
-app.get('/deleteorderitem', (req, res) => {
-    let sql = "DROP TABLE Order_Item";
-    db.query(sql, (err, result) => {
-      if (err) throw err;
-      console.log("Table deleted");
-      res.send('table deleted')
-    });
-  });
-
-//delete table code
-app.get('/deleteorders', (req, res) => {
-    let sql = "DROP TABLE Orders";
-    db.query(sql, (err, result) => {
-      if (err) throw err;
-      console.log("Table deleted");
-      res.send('table deleted')
-    });
-  });*/
+*/
 
 //Create db 
 app.get('/createdbNBAStore', (req, res) => {

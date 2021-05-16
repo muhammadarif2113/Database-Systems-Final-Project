@@ -13,7 +13,10 @@ exports.loginCtrlFunction = (req, res) => {
 } 
 exports.registerCtrlFunction = (req, res) => {
     res.render('register')
-} 
+}
+exports.deleteCtrlFunction = (req, res) => {
+    res.render('delete')
+}  
 exports.storeCtrlFunction = (req, res) => {
     res.render('store')
 } 

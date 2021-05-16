@@ -115,6 +115,20 @@ exports.login = async (req, res) => {
     }
 } 
 
+//delete records from User_Account
+exports.delete = (req, res) => {
+    console.log(req.body); 
+    const {username1} = req.body; 
+    db.query('DELETE FROM User_Account WHERE username = ?', [username1], async (error, results) => {
+        if (error){
+            console.log(error); 
+        } 
+            return res.render('delete', {
+                message: 'Account deleted successfully'
+            });
+    })
+
+}
 
 //add credentials to database when user registers 
 exports.register = (req, res) => {

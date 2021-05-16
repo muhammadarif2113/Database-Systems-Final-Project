@@ -6,7 +6,9 @@ const {
     loginCtrlFunction, 
     registerCtrlFunction, 
     storeCtrlFunction, 
-    storeCartCtrlFunction
+    storeCartCtrlFunction,
+    deleteCtrlFunction
+
 
 } = require('../controllers/pagesCtrlFile');  
 const router = express.Router(); 
@@ -15,7 +17,8 @@ router.get('/', homeCtrlFunction);
 router.get('/carousel', carouselCtrlFunction); 
 router.get('/events', eventsCtrlFunction); 
 router.get('/login', loginCtrlFunction); 
-router.get('/register', registerCtrlFunction); 
+router.get('/register', registerCtrlFunction);
+router.get('/delete', deleteCtrlFunction);  
 router.get('/store', storeCtrlFunction); 
 router.get('/storeCart', storeCartCtrlFunction); 
 
